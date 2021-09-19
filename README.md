@@ -67,7 +67,7 @@ Open the Swagger Docs to see all the available endpoints
         'private': true/false  # private is an Optional parameter which defaults to false
     }
     ```
-- **Note: To send multiple images simply select multiple images on postman, or add multiple `image` parameters containing the different images you wish to add.**
+  - **Note: To send multiple images simply select multiple images on postman for one single `image` field, or add multiple `image` fields containing the different images you wish to add.**
 
 - `http://127.0.0.1:8000/api/images/my_images/` ---> GET
     - Get all images which you own, both private and public.
