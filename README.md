@@ -3,12 +3,6 @@
 ## About
 This is the solution to the winter 2022 Shopify intern challenge. An image repository api providing endpoints to users for several features.
 
-<!-- ### Preview
-<p float="middle">
-  <img src="proj-github-images/1.png" width="49%" />
-  <img src="proj-github-images/2.png" width="49%" />
-</p> -->
-
 ### Requirements
 python 3.8 and above.
 
@@ -51,23 +45,28 @@ Open the Swagger Docs to see all the available endpoints
     token: token_string # USE THIS TOKEN FOR AUTHORIZATION
 } with the format under Headers  ---> `Authorization : 'Token your_token_string'` send this along with every other request 
 
-- `http://127.0.0.1:8000/api/auth/login/` ---> POST ----> {
+- `http://127.0.0.1:8000/api/auth/login/` ---> POST 
+    - ```python
+    {
     'username': your_username, 
     'password': your_password
-} ----> RESPONSE ---> {
+    }``` 
+RESPONSE ---> {
     token: token_string # USE THIS TOKEN FOR AUTHORIZATION
 } with the format under Headers  ---> `Authorization : 'Token your_token_string'` send this along with every other request 
 
 <--- All endpoints below should be sent with Authorization Header token already set. Use POSTMAN. ---->
 
-- `http://127.0.0.1:8000/api/images/add/` ---> POST ----> 
+- `http://127.0.0.1:8000/api/images/add/` ---> POST
+    - ```python
     {
         'image': any_image_less_than_2mb, 
         'private': true/false <---- private is an Optional parameter which defaults to false ----> 
     }
+    ```
 
 - `http://127.0.0.1:8000/api/images/my_images/` ---> GET
- - Get all images which you own, both private and public.
+    - Get all images which you own, both private and public.
 
 - `http://127.0.0.1:8000/api/images/search/` ---> GET
     - Search for mages by name. Images you don't own will also be shown, unless they were uploaded as private images.
@@ -78,5 +77,4 @@ Open the Swagger Docs to see all the available endpoints
         - target_user : username of the user that the image should be shared to.
         - image_name : name of the image you own.
 
-
-**github url `https://github.com/shols232/python-tips-aid`**
+**Ensure to check the redoc api to get a more comprehensive detailing on the API features.**
