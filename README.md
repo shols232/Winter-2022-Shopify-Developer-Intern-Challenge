@@ -36,7 +36,7 @@ Open the Swagger Docs to see all the available endpoints
   
 
 
-### A brief of the basic API Endpoints.
+### A brief of the basic API Endpoints. -- you may use Postman to test.
 
 - `http://127.0.0.1:8000/api/auth/register/` ---> POST
 ```python
