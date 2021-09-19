@@ -67,13 +67,14 @@ Open the Swagger Docs to see all the available endpoints
         'private': true/false  # private is an Optional parameter which defaults to false
     }
     ```
+- **Note: To send multiple images simply select multiple images on postman, or add multiple `image` parameters containing the different images you wish to add.**
 
 - `http://127.0.0.1:8000/api/images/my_images/` ---> GET
     - Get all images which you own, both private and public.
 
 - `http://127.0.0.1:8000/api/images/search/` ---> GET
     - Search for mages by name. Images you don't own will also be shown, unless they were uploaded as private images.
-        - name : parameter used to search for the image
+        - name : query_parameter used to search for the image
 
 - `http://127.0.0.1:8000/api/images/share/` ---> POST
     - Share images to other users. Only images you own can be shared.
