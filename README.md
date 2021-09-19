@@ -39,23 +39,26 @@ Open the Swagger Docs to see all the available endpoints
 ### A brief of the basic API Endpoints.
 
 - `http://127.0.0.1:8000/api/auth/register/` ---> POST
-- ```python
+```python
   {
     'username': your_username, 
     'password': your_password
-} RESPONSE
-`{ token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` with the format under Headers  - `Authorization : 'Token your_token_string'` 
+  }
+``` 
+- RESPONSE ---> `{token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` 
+- use the token with this format under Headers  ---> `Authorization : 'Token your_token_string'`
 
 - `http://127.0.0.1:8000/api/auth/login/` ---> POST 
 ```python
     {
     'username': your_username, 
     'password': your_password
-}
+    }
 ``` 
-RESPONSE ---> `{token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` with the format under Headers  ---> `Authorization : 'Token your_token_string'` send  this along with every other request 
+- RESPONSE ---> `{token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` 
+- use the token with this format under Headers  ---> `Authorization : 'Token your_token_string'`
 
-<--- All endpoints below should be sent with Authorization Header token already set. Use POSTMAN. ---->
+**All endpoints below should be sent with Authorization Header token already set. Use POSTMAN.**
 
 - `http://127.0.0.1:8000/api/images/add/` ---> POST
 - ```python
@@ -72,7 +75,7 @@ RESPONSE ---> `{token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` with t
     - Search for mages by name. Images you don't own will also be shown, unless they were uploaded as private images.
         - name : parameter used to search for the image
 
-- `http://127.0.0.1:8000/api/images/share/` ---> GET
+- `http://127.0.0.1:8000/api/images/share/` ---> POST
     - Share images to other users. Only images you own can be shared.
         - target_user : username of the user that the image should be shared to.
         - image_name : name of the image you own.
