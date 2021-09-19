@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db.models.query_utils import Q
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
+from images.serializers import ImageSerializer, ShareImageSerializer
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
@@ -10,14 +11,12 @@ from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from images.serializers import ImageSerializer, ShareImageSerializer
-
 from .models import UserImage
 
 
 class AddImageView(APIView):
     serializer_class = ImageSerializer
-    parser_classes = (MultiPartParser, )
+    parser_classes = (MultiPartParser,)
 
     @swagger_auto_schema(
         request_body=ImageSerializer,
@@ -94,9 +93,7 @@ class SearchImagesView(APIView):
 
         # Grab images all images, then filter by name and including images that are NOT private unless,
         # the private image owned by the requesting user.
-        objects = self.model.objects.filter(
-            Q(image__icontains=image_name) & (Q(owner=request.user) | Q(private=False))
-        )
+        objects = self.model.objects.filter(Q(image__icontains=image_name) & (Q(owner=request.user) | Q(private=False)))
         serializer = self.serializer_class(objects, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -128,20 +125,14 @@ class ShareImageView(APIView):
         # User should not be able to share an image to themselves
         if owner_image.owner == target_user:
             return Response(
-                {
-                    "message": "Unfortunately, you are not allowed to share images to yourself, that would be weird."
-                },
+                {"message": "Unfortunately, you are not allowed to share images to yourself, that would be weird."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        target_user_has_image = UserImage.objects.filter(
-            owner=target_user, image=owner_image.image
-        ).exists()
+        target_user_has_image = UserImage.objects.filter(owner=target_user, image=owner_image.image).exists()
 
         if target_user_has_image:
             return Response(
-                {
-                    "message": "Sorry, but this user already has this image. Try another one."
-                },
+                {"message": "Sorry, but this user already has this image. Try another one."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
         # Create a new UserImage object for the to_user so he now has the image.

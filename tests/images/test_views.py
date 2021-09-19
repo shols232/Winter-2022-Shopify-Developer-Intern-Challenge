@@ -1,13 +1,13 @@
-from django.contrib.auth.models import User
-from tests.images.test_models import UserImageFactory
 from tempfile import TemporaryDirectory
+
+from django.contrib.auth.models import User
 from django.test.utils import override_settings
-from images.models import UserImage
-from tests.account.test_models import UserFactory
 from django.urls import reverse
+from images.models import UserImage
 from rest_framework import status
 from rest_framework.test import APITestCase
-
+from tests.account.test_models import UserFactory
+from tests.images.test_models import UserImageFactory
 from tests.testutils import CustomTestCase, TestUtils
 
 
@@ -87,11 +87,7 @@ class ShareImageViewTests(CustomTestCase, APITestCase):
 
         # Initial assertions
         # user_2 has no image named file.png
-        self.assertFalse(
-            UserImage.objects.filter(
-                image=self.user_1_image.image.name, owner=self.user_2
-            ).exists()
-        )
+        self.assertFalse(UserImage.objects.filter(image=self.user_1_image.image.name, owner=self.user_2).exists())
 
         # Create the image.
         response = self.client.post(
@@ -104,18 +100,12 @@ class ShareImageViewTests(CustomTestCase, APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         # Image was shared - user2 now has an image named file.png
-        self.assertTrue(
-            UserImage.objects.filter(
-                image=self.user_1_image.image, owner=self.user_2
-            ).exists()
-        )
+        self.assertTrue(UserImage.objects.filter(image=self.user_1_image.image, owner=self.user_2).exists())
 
         # Check response
         self.assertEqual(
             response.json(),
-            {
-                "message": f"{self.user_1_image.image.name} has been succesfully shared to user2"
-            },
+            {"message": f"{self.user_1_image.image.name} has been succesfully shared to user2"},
         )
 
         # Get updated instance from database.
@@ -137,9 +127,7 @@ class ShareImageViewTests(CustomTestCase, APITestCase):
         response = self.client.post(
             path=reverse("images_api:share_image"),
             data={"image_name": self.user_1_image.image.name, "target_user": "user3"},
-            **TestUtils.generate_user_auth_headers(
-                self.user_2
-            ),  # Here we try to share it using user2 credentials
+            **TestUtils.generate_user_auth_headers(self.user_2),  # Here we try to share it using user2 credentials
         )
 
         # Verify response status
@@ -214,7 +202,7 @@ class SearchImageViewTests(CustomTestCase, APITestCase):
 
         # Verify response status
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+
         # Check response
         self.assertEqual(
             response.json(),

@@ -1,10 +1,9 @@
-from tests.account.test_models import UserFactory
-from django.urls import reverse
 from django.contrib.auth.models import User
+from django.urls import reverse
 from rest_framework import status
-from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
-
+from rest_framework.test import APITestCase
+from tests.account.test_models import UserFactory
 from tests.testutils import CustomTestCase
 
 
@@ -47,17 +46,13 @@ class LoginViewTests(CustomTestCase, APITestCase):
             {
                 "method": "POST",
                 "status": status.HTTP_400_BAD_REQUEST,
-                "response": {
-                    "non_field_errors": ["Unable to log in with provided credentials."]
-                },
+                "response": {"non_field_errors": ["Unable to log in with provided credentials."]},
                 "label": "Invalid credentials",
                 "data": {"username": "invalid", "password": "user"},
             },
         ]
 
-        self.assert_invalid_data_response(
-            url=reverse("account_api:login"), invalid_data_dicts=invalid_data_dicts
-        )
+        self.assert_invalid_data_response(url=reverse("account_api:login"), invalid_data_dicts=invalid_data_dicts)
 
 
 class RegisterUserViewTests(CustomTestCase, APITestCase):

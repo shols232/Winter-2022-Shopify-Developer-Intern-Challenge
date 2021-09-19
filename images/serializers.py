@@ -1,16 +1,13 @@
 from typing import Dict
 
+from images.models import UserImage
+from lib.validators import validate_image_extension, validate_image_file_size
 from rest_framework import serializers
 from rest_framework.fields import CharField
 
-from images.models import UserImage
-from lib.validators import validate_image_extension, validate_image_file_size
-
 
 class ImageSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(
-        required=True, validators=[validate_image_file_size, validate_image_extension]
-    )
+    image = serializers.ImageField(required=True, validators=[validate_image_file_size, validate_image_extension])
     name = serializers.CharField(source="image.name", read_only=True)
     owner = serializers.CharField(source="owner.username", read_only=True)
 

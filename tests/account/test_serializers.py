@@ -45,6 +45,4 @@ class SendSMSMSerializerTests(CustomTestCase):
 
     def test_invalid_data(self):
         serializer = CreateUserSerializer
-        self.assert_invalid_data(
-            form=serializer, invalid_data_dicts=self.INVALID_DATA_DICTS
-        )
+        self.assert_invalid_data(form=serializer, invalid_data_dicts=self.INVALID_DATA_DICTS)

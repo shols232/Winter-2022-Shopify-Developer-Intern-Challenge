@@ -1,10 +1,11 @@
-import factory
-from tests.testutils import TestUtils
-from django.test.utils import override_settings
-from tests.account.test_models import UserFactory
-from django.test import TestCase
-from images.models import UserImage
 from tempfile import TemporaryDirectory
+
+import factory
+from django.test import TestCase
+from django.test.utils import override_settings
+from images.models import UserImage
+from tests.account.test_models import UserFactory
+from tests.testutils import TestUtils
 
 
 class UserImageFactory(factory.django.DjangoModelFactory):

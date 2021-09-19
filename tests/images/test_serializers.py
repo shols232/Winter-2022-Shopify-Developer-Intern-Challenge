@@ -1,5 +1,6 @@
-from tests.testutils import CustomTestCase
 from images.serializers import ShareImageSerializer
+from tests.testutils import CustomTestCase
+
 
 class ShareImageSerializerTests(CustomTestCase):
     VALID_DATA_DICTS = [
@@ -52,6 +53,4 @@ class ShareImageSerializerTests(CustomTestCase):
 
     def test_invalid_data(self):
         serializer = ShareImageSerializer
-        self.assert_invalid_data(
-            form=serializer, invalid_data_dicts=self.INVALID_DATA_DICTS
-        )
+        self.assert_invalid_data(form=serializer, invalid_data_dicts=self.INVALID_DATA_DICTS)
