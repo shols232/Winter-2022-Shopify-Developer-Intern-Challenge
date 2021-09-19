@@ -38,30 +38,30 @@ Open the Swagger Docs to see all the available endpoints
 
 ### A brief of the basic API Endpoints.
 
-- `http://127.0.0.1:8000/api/auth/register/` ---> POST ----> {
+- `http://127.0.0.1:8000/api/auth/register/` ---> POST
+- ```python
+  {
     'username': your_username, 
     'password': your_password
-} ----> RESPONSE ---> {
-    token: token_string # USE THIS TOKEN FOR AUTHORIZATION
-} with the format under Headers  ---> `Authorization : 'Token your_token_string'` send this along with every other request 
+} RESPONSE
+`{ token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` with the format under Headers  - `Authorization : 'Token your_token_string'` 
 
 - `http://127.0.0.1:8000/api/auth/login/` ---> POST 
-    - ```python
+```python
     {
     'username': your_username, 
     'password': your_password
-    }``` 
-RESPONSE ---> {
-    token: token_string # USE THIS TOKEN FOR AUTHORIZATION
-} with the format under Headers  ---> `Authorization : 'Token your_token_string'` send this along with every other request 
+}
+``` 
+RESPONSE ---> `{token: token_string # USE THIS TOKEN FOR AUTHORIZATION }` with the format under Headers  ---> `Authorization : 'Token your_token_string'` send  this along with every other request 
 
 <--- All endpoints below should be sent with Authorization Header token already set. Use POSTMAN. ---->
 
 - `http://127.0.0.1:8000/api/images/add/` ---> POST
-    - ```python
+- ```python
     {
         'image': any_image_less_than_2mb, 
-        'private': true/false <---- private is an Optional parameter which defaults to false ----> 
+        'private': true/false  # private is an Optional parameter which defaults to false
     }
     ```
 
