@@ -12,7 +12,7 @@ First create a virtualenv using `python3 -m venv venv`
 Then activate your vitual environment with  `source venv/bin/activate` if on linux.
 - Next   
 ```python
-cd imagerepo
+cd Winter-2022-Shopify-Developer-Intern-Challenge
 pip install -r requirements.txt
 ```
 - change .env.example to .env and fill in your environment variables
